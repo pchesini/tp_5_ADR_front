@@ -1,0 +1,30 @@
+
+<h2>Alumnos</h2>
+
+<input placeholder="Buscar..." [(ngModel)]="search">
+<button (click)="buscar()">Buscar</button>
+<button routerLink="/alumnos/new">Nuevo</button>
+
+<table *ngIf="data">
+  <thead>
+    <tr><th>Apellido</th><th>Nombre</th><th>Email</th><th>Nacimiento</th><th></th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of data.content">
+      <td>{{a.apellido}}</td>
+      <td>{{a.nombre}}</td>
+      <td>{{a.email}}</td>
+      <td>{{a.fechaNacimiento}}</td>
+      <td>
+        <button [routerLink]="['/alumnos', a.id, 'edit']">Editar</button>
+        <button (click)="remove(a)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="data">
+  <button (click)="prev()" [disabled]="page===0">Anterior</button>
+  <span>Página {{page+1}} / {{data.totalPages}}</span>
+  <button (click)="next()" [disabled]="page >= (data.totalPages-1)">Siguiente</button>
+</div>

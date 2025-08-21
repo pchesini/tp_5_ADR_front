@@ -1,0 +1,24 @@
+<h2>{{ id ? 'Editar' : 'Nuevo' }} alumno</h2>
+
+<form (ngSubmit)="save()">
+  <label>Nombre</label>
+  <input [(ngModel)]="model.nombre" name="nombre" required maxlength="80">
+
+  <label>Apellido</label>
+  <input [(ngModel)]="model.apellido" name="apellido" required maxlength="80">
+
+  <label>Email</label>
+  <input [(ngModel)]="model.email" name="email" type="email" required maxlength="120">
+
+  <label>Fecha Nacimiento</label>
+  <input [(ngModel)]="model.fechaNacimiento" name="fechaNacimiento" type="date" required>
+
+  <label>Teléfono</label>
+  <input [(ngModel)]="model.telefono" name="telefono" maxlength="30">
+
+  <label>Dirección</label>
+  <input [(ngModel)]="model.direccion" name="direccion" maxlength="200">
+
+  <button type="submit">Guardar</button>
+  <button type="button" routerLink="/alumnos">Cancelar</button>
+</form>
