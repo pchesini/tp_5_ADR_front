@@ -3,8 +3,9 @@
 .hero {
   border-radius: 16px;
   padding: clamp(16px, 3vw, 28px);
-  background: linear-gradient(135deg, #E3F2FD 0%, #EDE7F6 100%);
+  background: linear-gradient(135deg, #E8F0FE 0%, #F3E8FF 100%);
   margin-bottom: 16px;
+  border: 1px solid rgba(0,0,0,.06);
 
   .hero__content { max-width: 900px; }
   h1 { margin: 0 0 6px; font-size: clamp(28px, 4vw, 40px); color: #0f172a; }
@@ -19,6 +20,13 @@
 
   @media (max-width: 1024px) { grid-template-columns: repeat(2, minmax(0,1fr)); }
   @media (max-width: 640px)  { grid-template-columns: 1fr; }
-
-  .card { display: grid; align-content: start; }
 }
+
+.card {
+  display: grid; align-content: start;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.pastel1 { background: #F0F9FF; } /* azul muy suave */
+.pastel2 { background: #FDF2F8; } /* rosa muy suave */
+.pastel3 { background: #F8FAE5; } /* lima muy suave */

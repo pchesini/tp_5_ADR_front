@@ -1,54 +1,58 @@
-<section class="hero mat-elevation-z2">
+<section class="hero">
   <div class="hero__content">
-    <h1>Sistema de Asistencias</h1>
+    <h1>Bienvenido/a 👋</h1>
     <p class="lead">
-      Gestioná alumnos, registrá asistencias por materia y generá reportes con filtros por fecha.
+      Administrá estudiantes y registrá asistencias de manera simple y rápida.
     </p>
     <div class="cta">
-      <a mat-raised-button color="primary" routerLink="/alumnos">
-        <mat-icon>group</mat-icon>&nbsp; Ir a Alumnos
+      <a mat-flat-button color="primary" routerLink="/alumnos">
+        <mat-icon>group</mat-icon>&nbsp;Gestionar alumnos
       </a>
-      <a mat-stroked-button routerLink="/alumnos/new">
-        <mat-icon>person_add</mat-icon>&nbsp; Crear alumno
+      <a mat-stroked-button color="primary" routerLink="/alumnos/new">
+        <mat-icon>person_add</mat-icon>&nbsp;Nuevo alumno
       </a>
     </div>
   </div>
 </section>
 
 <section class="grid">
-  <mat-card class="card">
+  <mat-card class="card pastel1">
     <mat-card-header>
-      <mat-card-title>Gestión de estudiantes</mat-card-title>
+      <mat-card-title>Alumnos</mat-card-title>
+      <mat-card-subtitle>Altas, bajas, modificaciones</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      Alta, edición y baja con validaciones. Búsqueda y paginado.
+      Mantené actualizada la nómina de estudiantes.
     </mat-card-content>
     <mat-card-actions>
-      <a mat-button color="primary" routerLink="/alumnos">Ver alumnos</a>
+      <a mat-button color="primary" routerLink="/alumnos">Ver lista</a>
+      <a mat-button color="primary" routerLink="/alumnos/new">Crear</a>
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="card">
+  <mat-card class="card pastel2">
     <mat-card-header>
-      <mat-card-title>Asistencias por materia</mat-card-title>
+      <mat-card-title>Asistencias</mat-card-title>
+      <mat-card-subtitle>Próximamente</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      Marcá presente/ausente/tarde por clase y fecha.
+      Registro por materia/fecha con reportes y filtros.
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button disabled>Próximamente</button>
+      <button mat-button disabled>Entrar</button>
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="card">
+  <mat-card class="card pastel3">
     <mat-card-header>
       <mat-card-title>Reportes</mat-card-title>
+      <mat-card-subtitle>Próximamente</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      Filtrá por rango de fechas, alumno o materia. Exportable.
+      Visualización y exportación de asistencia.
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button disabled>Próximamente</button>
+      <button mat-button disabled>Ver reportes</button>
     </mat-card-actions>
   </mat-card>
 </section>

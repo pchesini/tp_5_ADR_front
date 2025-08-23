@@ -1,3 +1,17 @@
-.navbar { position: sticky; top: 0; z-index: 1000; }
-.spacer { flex: 1 1 auto; }
-button.active { background: rgba(255,255,255,.16); }
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  .brand {
+    display: flex; gap: 8px; align-items: center;
+    cursor: pointer; text-decoration: none; color: inherit;
+    span { font-weight: 600; letter-spacing: .2px; }
+  }
+
+  .spacer { flex: 1; }
+
+  .links a[mat-button] {
+    font-weight: 500;
+  }
+}
