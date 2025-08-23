@@ -1,0 +1,45 @@
+.alumnos-card {
+  width: 100%;
+  max-width: 1400px;     // más ancho
+  margin: 32px auto;     // centrado
+  padding: 24px 24px 8px;
+  border-radius: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 3 columnas en desktop
+  gap: 16px;
+  margin-top: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.actions {
+  grid-column: 1 / -1;     // fila completa
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.actions .spacer {
+  flex: 1 1 auto;
+}
+
+/* 2 columnas en tablets */
+@media (max-width: 1024px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 1 columna en mobile */
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
