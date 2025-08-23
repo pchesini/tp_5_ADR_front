@@ -9,7 +9,7 @@ export interface Alumno {
   nombre: string;
   apellido: string;
   email: string;
-  fechaNacimiento: string; // YYYY-MM-DD
+  fechaNacimiento: string; 
   telefono?: string;
   direccion?: string;
 }

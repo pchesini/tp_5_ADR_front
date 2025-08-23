@@ -1,30 +1,103 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Alumnos</mat-card-title>
+    <mat-card-subtitle>Gestión y búsqueda</mat-card-subtitle>
+  </mat-card-header>
 
-<h2>Alumnos</h2>
+  <mat-card-content>
 
-<input placeholder="Buscar..." [(ngModel)]="search">
-<button (click)="buscar()">Buscar</button>
-<button routerLink="/alumnos/new">Nuevo</button>
+    <div class="toolbar">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Buscar (nombre, apellido o email)</mat-label>
+        <input matInput [(ngModel)]="search" (keyup.enter)="buscar()">
+        <button *ngIf="search" matSuffix mat-icon-button aria-label="Limpiar" (click)="search=''; buscar()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-<table *ngIf="data">
-  <thead>
-    <tr><th>Apellido</th><th>Nombre</th><th>Email</th><th>Nacimiento</th><th></th></tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let a of data.content">
-      <td>{{a.apellido}}</td>
-      <td>{{a.nombre}}</td>
-      <td>{{a.email}}</td>
-      <td>{{a.fechaNacimiento}}</td>
-      <td>
-        <button [routerLink]="['/alumnos', a.id, 'edit']">Editar</button>
-        <button (click)="remove(a)">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      <button mat-flat-button color="primary" (click)="buscar()" [disabled]="loading">
+        <mat-icon>search</mat-icon>
+        Buscar
+      </button>
 
-<div *ngIf="data">
-  <button (click)="prev()" [disabled]="page===0">Anterior</button>
-  <span>Página {{page+1}} / {{data.totalPages}}</span>
-  <button (click)="next()" [disabled]="page >= (data.totalPages-1)">Siguiente</button>
-</div>
+      <a routerLink="/alumnos/new" mat-flat-button color="primary">
+        <mat-icon>person_add</mat-icon>
+        Nuevo
+      </a>
+    </div>
+
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+    <div *ngIf="!loading && data && data.content?.length === 0" class="empty">
+      <mat-icon>info</mat-icon>
+      Sin resultados para “{{search}}”.
+    </div>
+
+    <div class="table-wrap" *ngIf="!loading && data && data.content?.length">
+      <table mat-table [dataSource]="data!.content" matSort (matSortChange)="onSort($event)">
+
+        <!-- Apellido -->
+        <ng-container matColumnDef="apellido">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+          <td mat-cell *matCellDef="let a">{{ a.apellido }}</td>
+        </ng-container>
+
+        <!-- Nombre -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td mat-cell *matCellDef="let a">{{ a.nombre }}</td>
+        </ng-container>
+
+        <!-- Email -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let a">{{ a.email }}</td>
+        </ng-container>
+
+        <!-- Nacimiento -->
+        <ng-container matColumnDef="fechaNacimiento">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nacimiento </th>
+          <td mat-cell *matCellDef="let a">{{ a.fechaNacimiento | date:'dd/MM/yyyy' }}</td>
+        </ng-container>
+        <!-- debo agregarle estoo luego
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
+          <td mat-cell *matCellDef="let a">{{ a.telefono || '-' }}</td>
+        </ng-container>
+
+         Dirección 
+        <ng-container matColumnDef="direccion">
+          <th mat-header-cell *matHeaderCellDef> Dirección </th>
+          <td mat-cell *matCellDef="let a" class="direccion-cell">
+            {{ (a.direccion | truncate:30) || '-' }}
+          </td>
+        </ng-container>-->
+        <!-- Acciones -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let a">
+            <a mat-stroked-button color="primary" [routerLink]="['/alumnos', a.id, 'edit']" matTooltip="Editar alumno">
+              <mat-icon>edit</mat-icon>&nbsp;Editar
+            </a>
+            &nbsp;
+            <button mat-stroked-button color="warn" (click)="confirmRemove(a)" matTooltip="Eliminar alumno">
+              <mat-icon>delete</mat-icon>&nbsp;Eliminar
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator
+        [length]="data?.totalElements || 0"
+        [pageIndex]="page"
+        [pageSize]="size"
+        [pageSizeOptions]="[5,10,20,50]"
+        (page)="onPage($event)">
+      </mat-paginator>
+    </div>
+
+  </mat-card-content>
+</mat-card>
